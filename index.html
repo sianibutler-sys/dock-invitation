@@ -33,6 +33,17 @@ body{margin:0;background:#FBF8F2}
 .flag:hover,.flag:focus-visible{background:#E8642C !important;color:#14253F !important;text-decoration:underline}
 :focus-visible{outline:3px solid #E8642C;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}
+.info{border-top:1px solid #E8642C}
+.info details{border-bottom:1px solid #E8642C}
+.info summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:150px 1fr 32px;align-items:baseline;gap:8px 20px;padding:24px 0;min-height:48px}
+.info summary::-webkit-details-marker{display:none}
+.info .lab{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;letter-spacing:.22em}
+.info .head{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(28px,4.4vw,40px);line-height:1.1}
+.info .pm{justify-self:end;font-family:'DM Mono',monospace;font-size:28px;line-height:1;color:#E8642C}
+.info .pm::before{content:"+"}
+.info details[open] .pm::before{content:"\2212"}
+.info p{margin:0;padding:0 52px 28px 170px;max-width:34em}
+@media (max-width:600px){.info summary{grid-template-columns:1fr 32px}.info .lab{grid-column:1 / -1}.info p{padding:0 0 26px}}
 .snap{min-height:100vh;min-height:100svh;scroll-snap-align:start;box-sizing:border-box;align-content:center;justify-content:center}
 a{color:#14253F}a:hover{color:#0A1526}
 button[aria-pressed="true"]{background:#14253F !important;color:#FBF8F2 !important}
@@ -73,7 +84,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </section>
 <section id="invite" class="snap" style="max-width: 1120px; margin: 0 auto; padding: 72px 24px 88px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
 <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
-<div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">BY PRIVATE INVITATION</div>
+<div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">A FIRST LOOK AT THE DOCK CLUB</div>
 <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 34px; line-height: 1" id="hero-name" hidden></div>
 <h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(48px, 7vw, 92px); line-height: 1.02"><span id="h1-first">An</span> evening on the water, <span>set for ten.</span></h1>
 <p style="margin: 0; font-size: 20px; max-width: 26em">Chef Al. A tasting served course by course aboard a private vessel, as evening comes down over the Inner Harbor. Ten places are set. One is yours.</p>
@@ -84,28 +95,24 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </div>
 <img src="/assets/harbor-deck.webp" alt="The Baltimore skyline at dusk, seen across the water from the deck" style="flex: 1 1 360px; min-width: 0; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 30% 50%; display: block">
 </section>
-<section style="border-top: 1px solid #E8642C; border-bottom: 1px solid #E8642C">
-<div style="max-width: 1120px; margin: 0 auto; padding: 64px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 44px 36px">
-<div style="display: flex; flex-direction: column; gap: 8px">
-<div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">WHEN</div>
-<div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 38px; line-height: 1.1">Thursday, October 29</div>
-<div>Doors open at 5:00 pm. First course at 6:00 pm. The evening ends at 10:00 pm.</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 8px">
-<div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">WHERE</div>
-<div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 38px; line-height: 1.1">On the water</div>
-<div>Inner Harbor Marina, Baltimore, MD 21230. The exact location, directions, and parking go to confirmed guests only.</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 8px">
-<div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">THE EVENING</div>
-<div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 38px; line-height: 1.1">A tasting, unhurried</div>
-<div>No assigned seats. Move through the vessel as each course comes out.</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 8px">
-<div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">THE CHEF</div>
-<div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 38px; line-height: 1.1">Chef Al</div>
-<div>A surprise menu. Eight courses. Three signature drinks.</div>
-</div>
+<section style="max-width: 900px; margin: 0 auto; padding: 56px 24px 24px">
+<div class="info">
+<details name="info" open>
+<summary><span class="lab">WHEN</span><span class="head">Thursday, October 29</span><span class="pm" aria-hidden="true"></span></summary>
+<p>Doors open at 5 pm. First course at 6 pm. The evening ends at 10 pm.</p>
+</details>
+<details name="info">
+<summary><span class="lab">WHERE</span><span class="head">On the water</span><span class="pm" aria-hidden="true"></span></summary>
+<p>Inner Harbor Marina, Baltimore, MD 21230. The exact location, directions, and parking go to confirmed guests only.</p>
+</details>
+<details name="info">
+<summary><span class="lab">THE EVENING</span><span class="head">A tasting, unhurried</span><span class="pm" aria-hidden="true"></span></summary>
+<p>No assigned seats. Move through the vessel as each course comes out.</p>
+</details>
+<details name="info">
+<summary><span class="lab">THE CHEF</span><span class="head">Chef Al</span><span class="pm" aria-hidden="true"></span></summary>
+<p>A surprise menu. Eight courses. Three signature drinks.</p>
+</details>
 </div>
 </section>
 <section style="max-width: 1120px; margin: 0 auto; padding: 88px 24px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
@@ -123,7 +130,10 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <p style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(34px, 4.6vw, 54px); line-height: 1.15">Everything slows down at the water.</p>
 <p style="margin: 0; max-width: 34em">People have always gone to the water to think, to celebrate, to grieve, to start over. It is the element tied to feeling and intuition. The part of us that knows before we can explain it.</p>
 <p style="margin: 0; max-width: 34em">The Dock Club is a social club built around that pull. Good food, good company, and the water close enough to hear.</p>
-<p style="margin: 0; max-width: 34em">Eastport. Galesville. Inner Harbor. On October 29 we tie up in Baltimore.</p>
+<div style="margin-top: 14px; font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em">A FIRST LOOK</div>
+<p style="margin: 0; max-width: 34em">This is the first evening of the Dock Supper Club, a waterfront dining series from The Dock Club, made with The Chef Al Experience. It is the first of many.</p>
+<p style="margin: 0; max-width: 34em">A second evening follows in November. In spring and summer the club opens in full, with a collection of series on and around the water.</p>
+<p style="margin: 0; max-width: 34em; font-weight: 700">You are seeing it before anyone else.</p>
 <svg viewBox="0 0 275 125" style="width: 120px; height: auto" aria-hidden="true"><g fill="none" stroke="#14253F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 15 105 C 30 114, 55 114, 75 98 C 100 78, 115 35, 150 20 C 170 12, 200 14, 222 38"></path><path d="M 196 42 C 176 50, 168 76, 184 94 C 198 108, 225 112, 250 110"></path></g><circle cx="254" cy="38" r="12" fill="#E8642C"></circle></svg>
 <p style="margin: 0; font-size: 16px; font-weight: 500; letter-spacing: 0.3em">COME ABOARD. TASTE EVERYTHING. STAY A WHILE.</p>
 </section>
