@@ -184,15 +184,19 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </div>
 </div>
 </div>
-<div style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid #E8642C">
+<div id="kitchen-block" style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid #E8642C">
 <label for="rsvp-kitchen" style="font-weight: 600; font-size: 20px">Allergies and dietary restrictions</label>
 <div style="font-size: 16px">The menu is not shared in advance, so Chef Al plans around what you write here. Please be specific. If there is nothing, write "none."</div>
 <textarea id="rsvp-kitchen" rows="3" required placeholder="Shellfish allergy, no pork, vegetarian, gluten-free" style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
 </div>
-<div style="display: flex; flex-direction: column; gap: 8px">
+<div id="potluck-block" style="display: flex; flex-direction: column; gap: 8px">
 <label for="rsvp-potluck" style="font-weight: 500">What do you bring to the potluck?</label>
 <textarea id="rsvp-potluck" rows="3" placeholder="A dish, a story, a skill. Anything goes." style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
 </div>
+<label id="keep-row" hidden style="display: flex; gap: 14px; align-items: flex-start">
+<input type="checkbox" id="rsvp-keep" checked style="flex: none; width: 26px; height: 26px; margin: 2px 0 0; accent-color: #14253F">
+<span>Keep me on the guest list. I'd like to hear about what comes next. We will use the name and email above.</span>
+</label>
 <label id="release-row" style="display: flex; gap: 14px; align-items: flex-start">
 <input type="checkbox" id="rsvp-release" style="flex: none; width: 26px; height: 26px; margin: 2px 0 0; accent-color: #14253F">
 <span>There will be professional photography and video at this event. I give The Dock Club permission to use photos and footage that include me on its website, social channels, and promotional materials.</span>
@@ -210,7 +214,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <div id="sent-no" hidden>
 <div style="padding: 36px; border: 1px solid #6F685C; display: flex; flex-direction: column; gap: 12px">
 <div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 34px; line-height: 1.15">We will miss you at this one.</div>
-<div>We will be in touch about what comes next.</div>
+<div id="sent-no-note">Thank you for letting us know.</div>
 </div>
 </div>
 </div>
@@ -244,7 +248,11 @@ input::placeholder,textarea::placeholder{color:#5E6675}
       document.querySelectorAll('[data-choice]').forEach(function (o) {
         o.setAttribute('aria-pressed', String(o === b));
       });
-      $('release-row').hidden = choice !== 'yes';
+      var yes = choice === 'yes';
+      $('release-row').hidden = !yes;
+      $('kitchen-block').hidden = !yes;
+      $('potluck-block').hidden = !yes;
+      $('keep-row').hidden = yes;
       $('plus-one').hidden = !(plusAllowed && choice === 'yes');
     });
   });
@@ -280,19 +288,21 @@ input::placeholder,textarea::placeholder{color:#5E6675}
       allergies: $('rsvp-kitchen').value.trim(),
       potluck: $('rsvp-potluck').value.trim(),
       release: $('rsvp-release').checked,
+      keep: choice !== 'yes' && $('rsvp-keep').checked,
       plusOne: plusAllowed && bringing,
       plusName: $('plus-name').value.trim(),
       plusAllergies: $('plus-kitchen').value.trim()
     };
     if (mode !== 'guest') return fail('Replies open from your personal invitation link.');
-    if (!data.email && !data.phone) return fail('Please give us an email or a mobile number so we can confirm your place.');
+    if (data.attending && !data.email && !data.phone) return fail('Please give us an email or a mobile number so we can confirm your place.');
+    if (data.keep && !data.email) return fail('Please add your email so we can reach you about what comes next.');
     if (data.attending && !data.allergies) return fail('Please list any allergies or dietary restrictions. If there are none, write "none."');
     if (data.attending && !data.release) return fail('Please check the photography and video permission to reply yes.');
     if (data.attending && data.plusOne && (!data.plusName || !data.plusAllergies)) return fail('Please give your guest\'s name and their allergies or dietary restrictions. If there are none, write "none."');
     var btn = $('send');
     btn.disabled = true;
     fetch('/api/rsvp', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })
-      .then(function (r) { if (!r.ok) throw new Error(); showSent(choice); })
+      .then(function (r) { if (!r.ok) throw new Error(); if (data.keep) $('sent-no-note').textContent = 'Thank you for letting us know. We will be in touch about what comes next.'; showSent(choice); })
       .catch(function () { btn.disabled = false; fail('Your reply did not go through. Please try again in a moment.'); });
   });
 

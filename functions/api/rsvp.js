@@ -29,7 +29,9 @@ export async function onRequestPost({ request, env }) {
   const phone = clean(data.phone, 40);
   const allergies = clean(data.allergies, 2000);
   const potluck = clean(data.potluck, 2000);
-  if (!email && !phone) return json({ error: 'contact required' }, 400);
+  const keep = !attending && data.keep === true;
+  if (attending && !email && !phone) return json({ error: 'contact required' }, 400);
+  if (keep && !email) return json({ error: 'email required' }, 400);
   if (attending && !allergies) return json({ error: 'allergies required' }, 400);
   if (attending && data.release !== true) return json({ error: 'release required' }, 400);
 
@@ -42,8 +44,9 @@ export async function onRequestPost({ request, env }) {
 
   const fields = {
     RSVP: attending ? 'Yes' : 'No',
-    'Allergies and dietary restrictions': allergies,
-    'Potluck answer': potluck,
+    'Allergies and dietary restrictions': attending ? allergies : '',
+    'Potluck answer': attending ? potluck : '',
+    'Keep on guest list': keep,
     'Replied at': new Date().toISOString(),
   };
   if (attending) fields['Photo release'] = true;
