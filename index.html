@@ -55,6 +55,7 @@ button[aria-pressed="true"]{background:#14253F !important;color:#FBF8F2 !importa
 input::placeholder,textarea::placeholder{color:#5E6675}
 [hidden]{display:none !important}
 </style>
+<noscript><style>#rest{display:block !important}</style></noscript>
 </head>
 <body>
 <main id="private" hidden style="min-height: 100vh; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; background: #FBF8F2; color: #14253F; font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 18px">
@@ -87,6 +88,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <div id="env-hint" style="font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.2em">TAP THE SEAL TO OPEN</div>
 <a href="#invite" class="after flag" id="after" style="display: inline-block; padding: 15px 30px; background: #14253F; color: #FBF8F2; font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.2em; text-decoration: none">READ YOUR INVITATION</a>
 </section>
+<div id="rest" hidden>
 <section id="invite" class="snap" style="max-width: 1120px; margin: 0 auto; padding: 72px 24px 88px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
 <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
 <div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">A FIRST LOOK AT THE DOCK CLUB</div>
@@ -252,6 +254,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </footer>
 </div>
 </div>
+</div>
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
@@ -262,6 +265,12 @@ input::placeholder,textarea::placeholder{color:#5E6675}
   var choice = 'yes';
   var plusAllowed = false;
   var bringing = false;
+
+  $('after').addEventListener('click', function (e) {
+    e.preventDefault();
+    $('rest').hidden = false;
+    requestAnimationFrame(function () { $('invite').scrollIntoView({ behavior: 'smooth' }); });
+  });
 
   $('open-env').addEventListener('click', function () {
     $('env').classList.add('open');
