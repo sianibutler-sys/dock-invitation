@@ -45,7 +45,7 @@ export async function onRequestPost({ request, env }) {
   const fields = {
     RSVP: attending ? 'Yes' : 'No',
     'Allergies and dietary restrictions': attending ? allergies : '',
-    'Potluck answer': attending ? potluck : '',
+    'Favorite thing to eat by the water': attending ? potluck : '',
     'Keep on guest list': keep,
     'Guest note': clean(data.note, 2000),
     'Replied at': new Date().toISOString(),
@@ -54,9 +54,17 @@ export async function onRequestPost({ request, env }) {
   if (attending && record.fields['Plus one allowed'] === true) {
     const bringing = data.plusOne === true;
     fields['Bringing a plus one'] = bringing;
-    fields['Plus one name'] = bringing ? clean(data.plusName, 200) : '';
+    fields['Plus one first name'] = bringing ? clean(data.plusFirst, 100) : '';
+    fields['Plus one last name'] = bringing ? clean(data.plusLast, 100) : '';
     fields['Plus one allergies'] = bringing ? clean(data.plusAllergies, 2000) : '';
   }
+  const first = clean(data.firstName, 100);
+  const last = clean(data.lastName, 100);
+  const suffix = clean(data.suffix, 20);
+  if (first) fields['First name'] = first;
+  if (last) fields['Last name'] = last;
+  fields.Suffix = suffix;
+  if (first && last) fields['Full name'] = [first, last, suffix].filter(Boolean).join(' ');
   if (email) fields.Email = email;
   if (phone) fields.Mobile = phone;
 

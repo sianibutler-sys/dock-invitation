@@ -46,6 +46,9 @@ body{margin:0;background:#FBF8F2}
 .info details[open] .pm::before{content:"\2212"}
 .info p{margin:0;padding:0 52px 28px 170px;max-width:34em}
 @media (max-width:600px){.info summary{grid-template-columns:1fr 32px}.info .lab{grid-column:1 / -1}.info p{padding:0 0 26px}}
+.names{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 120px;gap:22px}
+.names.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:600px){.names,.names.two{grid-template-columns:1fr}}
 .snap{min-height:100vh;min-height:100svh;scroll-snap-align:start;box-sizing:border-box;align-content:center;justify-content:center}
 a{color:#14253F}a:hover{color:#0A1526}
 button[aria-pressed="true"]{background:#14253F !important;color:#FBF8F2 !important}
@@ -95,7 +98,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <div style="font-size: 16px; letter-spacing: 0.06em">Thursday, October 29 · Baltimore</div>
 </div>
 </div>
-<img src="/assets/harbor-deck.webp" alt="The Baltimore skyline at dusk, seen across the water from the deck" style="flex: 1 1 360px; min-width: 0; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 30% 50%; display: block">
+<img src="/assets/harbor-deck.webp" alt="The Baltimore skyline at dusk, seen across the water from the deck" style="flex: 1 1 360px; min-width: 0; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 80% 50%; display: block">
 </section>
 <section class="snap" style="max-width: 900px; margin: 0 auto; padding: 56px 24px">
 <div class="info">
@@ -126,6 +129,10 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(40px, 5.4vw, 64px); line-height: 1.05">Kept secret <span>until you step aboard.</span></h2>
 <p style="margin: 0; font-size: 20px; max-width: 30em">The Chesapeake in fall, with Jamaican, Thai, and Japanese turns. Eight courses. Three signature drinks.</p>
 <p style="margin: 0; max-width: 34em">That is all we are saying. Because the menu is a surprise, your allergies and dietary restrictions matter more than usual. Tell us when you reply, and Chef Al will plan around you.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; width: 100%; margin-top: 12px">
+<img src="/assets/oysters-glass.jpg" alt="A glass of sparkling wine beside oysters on ice" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block">
+<img src="/assets/oysters-plate.jpg" alt="Shucked oysters on ice with lemon and an oyster knife" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block">
+</div>
 </section>
 <section class="snap" style="max-width: 820px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 26px; text-align: center; align-items: center">
 <div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">THE DOCK CLUB</div>
@@ -146,9 +153,19 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <div id="rsvp-form" style="display: flex; flex-direction: column; gap: 28px">
 <p style="margin: 0">Reply by Thursday, October 22. Ten places are held. If they fill before your reply lands, we will be in touch about what comes next.</p>
 <div style="display: flex; flex-direction: column; gap: 22px">
+<div class="names">
 <div style="display: flex; flex-direction: column; gap: 8px">
-<label for="rsvp-name" style="font-weight: 500">Full name</label>
-<input id="rsvp-name" type="text" autocomplete="name" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+<label for="rsvp-first" style="font-weight: 500">First name</label>
+<input id="rsvp-first" type="text" autocomplete="given-name" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="rsvp-last" style="font-weight: 500">Last name</label>
+<input id="rsvp-last" type="text" autocomplete="family-name" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="rsvp-suffix" style="font-weight: 500">Suffix <span style="font-weight: 400">(optional)</span></label>
+<input id="rsvp-suffix" type="text" autocomplete="honorific-suffix" placeholder="Jr., III" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+</div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px">
 <div style="display: flex; flex-direction: column; gap: 8px">
@@ -174,9 +191,15 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <button type="button" aria-pressed="false" data-plus="yes" style="min-height: 54px; padding: 12px 24px; font: inherit; font-weight: 600; color: #14253F; background: transparent; border: 1px solid #14253F; cursor: pointer">I'm bringing a guest</button>
 </div>
 <div id="plus-fields" hidden style="display: flex; flex-direction: column; gap: 14px">
+<div class="names two">
 <div style="display: flex; flex-direction: column; gap: 8px">
-<label for="plus-name" style="font-weight: 500">Your guest's full name</label>
-<input id="plus-name" type="text" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+<label for="plus-first" style="font-weight: 500">Your guest's first name</label>
+<input id="plus-first" type="text" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="plus-last" style="font-weight: 500">Your guest's last name</label>
+<input id="plus-last" type="text" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px">
 <label for="plus-kitchen" style="font-weight: 500">Your guest's allergies and dietary restrictions</label>
@@ -190,8 +213,8 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <textarea id="rsvp-kitchen" rows="3" required placeholder="Shellfish allergy, no pork, vegetarian, gluten-free" style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
 </div>
 <div id="potluck-block" style="display: flex; flex-direction: column; gap: 8px">
-<label for="rsvp-potluck" style="font-weight: 500">What do you bring to the potluck?</label>
-<textarea id="rsvp-potluck" rows="3" placeholder="A dish, a story, a skill. Anything goes." style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
+<label for="rsvp-potluck" style="font-weight: 500">What is your favorite thing to eat by the water?</label>
+<textarea id="rsvp-potluck" rows="3" placeholder="Crabs on newspaper, a dozen oysters, ice cream at the end of the pier" style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px">
 <label for="rsvp-note" style="font-weight: 500">A note for us, if you'd like to leave one</label>
@@ -286,7 +309,9 @@ input::placeholder,textarea::placeholder{color:#5E6675}
     var data = {
       code: code,
       attending: choice === 'yes',
-      name: $('rsvp-name').value.trim(),
+      firstName: $('rsvp-first').value.trim(),
+      lastName: $('rsvp-last').value.trim(),
+      suffix: $('rsvp-suffix').value.trim(),
       email: $('rsvp-email').value.trim(),
       phone: $('rsvp-phone').value.trim(),
       allergies: $('rsvp-kitchen').value.trim(),
@@ -295,15 +320,17 @@ input::placeholder,textarea::placeholder{color:#5E6675}
       release: $('rsvp-release').checked,
       keep: choice !== 'yes' && $('rsvp-keep').checked,
       plusOne: plusAllowed && bringing,
-      plusName: $('plus-name').value.trim(),
+      plusFirst: $('plus-first').value.trim(),
+      plusLast: $('plus-last').value.trim(),
       plusAllergies: $('plus-kitchen').value.trim()
     };
     if (mode !== 'guest') return fail('Replies open from your personal invitation link.');
+    if ((data.attending || data.keep) && (!data.firstName || !data.lastName)) return fail('Please give your first and last name.');
     if (data.attending && !data.email && !data.phone) return fail('Please give us an email or a mobile number so we can confirm your place.');
     if (data.keep && !data.email) return fail('Please add your email so we can reach you about what comes next.');
     if (data.attending && !data.allergies) return fail('Please list any allergies or dietary restrictions. If there are none, write "none."');
     if (data.attending && !data.release) return fail('Please check the photography and video permission to reply yes.');
-    if (data.attending && data.plusOne && (!data.plusName || !data.plusAllergies)) return fail('Please give your guest\'s name and their allergies or dietary restrictions. If there are none, write "none."');
+    if (data.attending && data.plusOne && (!data.plusFirst || !data.plusLast || !data.plusAllergies)) return fail('Please give your guest\'s name and their allergies or dietary restrictions. If there are none, write "none."');
     var btn = $('send');
     btn.disabled = true;
     fetch('/api/rsvp', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })
@@ -333,7 +360,9 @@ input::placeholder,textarea::placeholder{color:#5E6675}
         $('hero-name').hidden = false;
         $('h1-first').textContent = 'an';
       }
-      if (g.fullName) $('rsvp-name').value = g.fullName;
+      if (g.firstName) $('rsvp-first').value = g.firstName;
+      if (g.lastName) $('rsvp-last').value = g.lastName;
+      if (g.suffix) $('rsvp-suffix').value = g.suffix;
       if (g.rsvp === 'Yes') showSent('yes');
       if (g.rsvp === 'No') showSent('no');
     })

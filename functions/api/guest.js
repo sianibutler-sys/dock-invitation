@@ -36,7 +36,8 @@ export async function onRequestGet({ request, env, waitUntil }) {
 
   return json({
     firstName: f['First name'] || '',
-    fullName: f['Full name'] || '',
+    lastName: f['Last name'] || '',
+    suffix: f['Suffix'] || '',
     plusOne: f['Plus one allowed'] === true,
     rsvp: f['RSVP'] === 'Yes' || f['RSVP'] === 'No' ? f['RSVP'] : '',
   });
