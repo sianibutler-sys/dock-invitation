@@ -118,12 +118,12 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </details>
 <details name="info">
 <summary><span class="lab">THE CHEF</span><span class="head">Chef Al</span><span class="pm" aria-hidden="true"></span></summary>
-<p>A surprise menu. Eight courses. Three signature drinks.</p>
+<p>A surprise menu. Eight courses. Three signature drinks. <a href="#chef">Meet the chef</a></p>
 </details>
 </div>
 </section>
 <section class="snap" style="max-width: 1120px; margin: 0 auto; padding: 56px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
-<img src="/assets/rooftop.webp" alt="The rooftop deck with a fire table and lanterns at sunset" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
+<img src="/assets/galley.jpg" alt="The kitchen aboard, with windows onto the harbor and the city" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
 <img src="/assets/interior.jpg" alt="The living room looking out through glass doors to the harbor" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
 </section>
 <section id="menu" class="snap" style="max-width: 820px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 22px; text-align: center; align-items: center">
@@ -135,6 +135,34 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <img src="/assets/lobster.jpg" alt="A whole lobster on a silver platter with charred lemon and herbs" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block">
 <img src="/assets/oysters-plate.jpg" alt="Shucked oysters on ice with lemon and an oyster knife" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block">
 </div>
+</section>
+<section id="chef" class="snap" style="max-width: 1120px; margin: 0 auto; padding: 72px 24px; display: flex; flex-direction: column; gap: 28px">
+<div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em">THE CHEF AL EXPERIENCE</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(40px, 5.4vw, 64px); line-height: 1.05">Meet the chefs.</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 12px" role="group" aria-label="Choose a chef">
+<button type="button" data-tab="al" aria-pressed="true" style="min-height: 48px; padding: 10px 22px; font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.2em; color: #14253F; background: transparent; border: 1px solid #14253F; cursor: pointer">CHEF AL GREEN</button>
+<button type="button" data-tab="cheyenne" aria-pressed="false" style="min-height: 48px; padding: 10px 22px; font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.2em; color: #14253F; background: transparent; border: 1px solid #14253F; cursor: pointer">CHEYENNE GREEN</button>
+</div>
+<div data-panel="al" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<img src="/assets/chef-al.jpg" alt="Chef Alexander Al Green in his chef's whites" style="flex: 1 1 300px; min-width: 0; max-width: 420px; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 40% 20%; display: block">
+<div style="flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px; max-width: 38em">
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(30px, 4vw, 42px); line-height: 1.1">Chef Alexander “Al” Green</h3>
+<p style="margin: 0">Chef Alexander “Al” Green is a distinguished private chef and culinary event specialist known for transforming memorable occasions into extraordinary dining experiences. With a passion for bold flavors, artistic presentation, and exceptional hospitality, Chef Al has built a reputation for creating culinary experiences that are as unforgettable as the people gathered around the table.</p>
+<p style="margin: 0">His impressive clientele includes Grammy-winning music producers, personalities from The Real Housewives, corporate professionals, and discerning hosts seeking something beyond the ordinary.</p>
+<p style="margin: 0">From intimate, multi-course private dinners and elegant celebrations to upscale corporate gatherings, Chef Al approaches every event with creativity, precision, and a commitment to excellence. His culinary style combines innovative flavor profiles, refined presentation, and unexpected touches that turn each course into an experience of its own.</p>
+<p style="margin: 0">Beyond the kitchen, Chef Al is celebrated for his engaging personality and genuine connection with his guests. He believes that exceptional dining is about more than what’s on the plate. It’s about the atmosphere, the conversation, and the memories created along the way.</p>
+<p style="margin: 0">Whether preparing an exclusive dinner for a handful of guests or orchestrating a sophisticated corporate event, Chef Al brings the same attention to detail, personal approach, and passion for hospitality to every occasion.</p>
+<p style="margin: 0">For Chef Al, great food is just the beginning. The experience is everything.</p>
+</div>
+</div>
+<div data-panel="cheyenne" hidden style="display: flex; flex-direction: column; gap: 16px; max-width: 38em">
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(30px, 4vw, 42px); line-height: 1.1">Cheyenne Green</h3>
+<div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em">SOUS CHEF &amp; CREATIVE EXPERIENCE SPECIALIST</div>
+<p style="margin: 0">For Cheyenne Green, hospitality is more than a passion—it’s a family tradition. Having cooked her way through college alongside her father, Chef Alexander “Al” Green, Cheyenne has grown into an essential part of the culinary team.</p>
+<p style="margin: 0">As Sous Chef, she brings fresh creativity, attention to detail, and a natural flair for hospitality to every event. Her talents extend beyond the kitchen, from crafting unique cocktail pop-up experiences to designing beautiful event décor and creating inviting atmospheres.</p>
+<p style="margin: 0">Blending culinary expertise with an eye for style and presentation, Cheyenne helps bring every detail of the Chef Al experience to life.</p>
+</div>
+<p style="margin: 0; padding-top: 20px; border-top: 1px solid #E8642C; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 26px; line-height: 1.3; max-width: 30em">Together, this father-daughter duo creates more than memorable meals. They create unforgettable experiences.</p>
 </section>
 <section class="snap" style="max-width: 820px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 26px; text-align: center; align-items: center">
 <div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">THE DOCK CLUB</div>
@@ -270,6 +298,14 @@ input::placeholder,textarea::placeholder{color:#5E6675}
     e.preventDefault();
     $('rest').hidden = false;
     requestAnimationFrame(function () { $('invite').scrollIntoView({ behavior: 'smooth' }); });
+  });
+
+  document.querySelectorAll('[data-tab]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-tab');
+      document.querySelectorAll('[data-tab]').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      document.querySelectorAll('[data-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== t; });
+    });
   });
 
   $('open-env').addEventListener('click', function () {
