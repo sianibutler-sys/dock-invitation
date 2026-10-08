@@ -47,6 +47,7 @@ export async function onRequestPost({ request, env }) {
     'Allergies and dietary restrictions': attending ? allergies : '',
     'Potluck answer': attending ? potluck : '',
     'Keep on guest list': keep,
+    'Guest note': clean(data.note, 2000),
     'Replied at': new Date().toISOString(),
   };
   if (attending) fields['Photo release'] = true;

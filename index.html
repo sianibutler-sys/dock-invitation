@@ -193,6 +193,10 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <label for="rsvp-potluck" style="font-weight: 500">What do you bring to the potluck?</label>
 <textarea id="rsvp-potluck" rows="3" placeholder="A dish, a story, a skill. Anything goes." style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
 </div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="rsvp-note" style="font-weight: 500">A note for us, if you'd like to leave one</label>
+<textarea id="rsvp-note" rows="3" style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
+</div>
 <label id="keep-row" hidden style="display: flex; gap: 14px; align-items: flex-start">
 <input type="checkbox" id="rsvp-keep" checked style="flex: none; width: 26px; height: 26px; margin: 2px 0 0; accent-color: #14253F">
 <span>Keep me on the guest list. I'd like to hear about what comes next. We will use the name and email above.</span>
@@ -287,6 +291,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
       phone: $('rsvp-phone').value.trim(),
       allergies: $('rsvp-kitchen').value.trim(),
       potluck: $('rsvp-potluck').value.trim(),
+      note: $('rsvp-note').value.trim(),
       release: $('rsvp-release').checked,
       keep: choice !== 'yes' && $('rsvp-keep').checked,
       plusOne: plusAllowed && bringing,
