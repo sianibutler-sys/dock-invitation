@@ -16,11 +16,12 @@
 html{scroll-snap-type:y proximity;scroll-behavior:smooth}
 body{margin:0;background:#FBF8F2}
 .env{position:relative;width:min(560px,100%);aspect-ratio:3/2;margin-top:clamp(120px,30vw,210px);perspective:1100px;filter:drop-shadow(0 22px 30px rgba(20,37,63,.28))}
-.env .back,.env .card,.env .pocket,.env .flap{background-image:url(/assets/paper.png);background-blend-mode:multiply}
+.env .card{background-image:url(/assets/paper.png);background-blend-mode:multiply}
+.env .back,.env .pocket,.env .flap{background-image:url(/assets/linen.jpg);background-size:170px 170px;background-blend-mode:multiply}
 .env .back{position:absolute;inset:0;background-color:#C9BFAE}
 .env .card{position:absolute;left:5%;right:5%;top:6%;height:88%;background-color:#FFFDF8;border-radius:8px 8px 0 0;z-index:2;transition:transform 1s ease .55s;display:flex;flex-direction:column;align-items:center;gap:3%;padding-top:6%;box-sizing:border-box;color:#14253F;font-family:'DM Mono',monospace;letter-spacing:.16em;font-size:clamp(9px,2.3vw,13px);text-align:center}
-.env .pocket{position:absolute;inset:0;background-color:#E9E1D2;clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;padding-bottom:5%;box-sizing:border-box;color:#14253F;font-family:'Special Elite','DM Mono',monospace;letter-spacing:.2em}
-.env .flap{position:absolute;left:0;top:0;width:100%;height:56%;background-color:#DDD3C2;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s ease;z-index:4}
+.env .pocket{position:absolute;inset:0;background-color:#EDE5D7;filter:drop-shadow(0 -2px 3px rgba(60,45,25,.22));clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;padding-bottom:5%;box-sizing:border-box;color:#14253F;font-family:'Special Elite','DM Mono',monospace;letter-spacing:.2em}
+.env .flap{position:absolute;left:0;top:0;width:100%;height:56%;background-color:#E2D8C7;filter:drop-shadow(0 3px 4px rgba(60,45,25,.3));clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s ease;z-index:4}
 .env .seal{position:absolute;left:50%;top:56%;width:clamp(58px,15vw,84px);height:clamp(58px,15vw,84px);transform:translate(-50%,-50%);border-radius:50%;border:0;background:#14253F;z-index:5;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .3s;box-shadow:0 3px 8px rgba(0,0,0,.4)}
 .env.open .flap{transform:rotateX(180deg);z-index:1}
 .env.open .card{transform:translateY(-57%)}
@@ -55,7 +56,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <div class="back"></div>
 <div class="card">
 <div>YOU ARE INVITED TO</div>
-<svg viewBox="0 0 64 36" style="width: 15%; height: auto" aria-hidden="true"><path d="M 4 30 C 16 30, 22 10, 34 10 C 44 10, 46 22, 38 22 C 46 27, 54 23, 60 27" fill="none" stroke="#14253F" stroke-width="2.5" stroke-linecap="round"></path><circle cx="50" cy="8" r="3.2" fill="#E8642C"></circle></svg>
+<svg viewBox="0 0 275 125" style="width: 20%; height: auto" aria-hidden="true"><g fill="none" stroke="#14253F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 15 105 C 30 114, 55 114, 75 98 C 100 78, 115 35, 150 20 C 170 12, 200 14, 222 38"></path><path d="M 196 42 C 176 50, 168 76, 184 94 C 198 108, 225 112, 250 110"></path></g><circle cx="254" cy="38" r="12" fill="#E8642C"></circle></svg>
 <div style="font-family: 'Pinyon Script', cursive; letter-spacing: 0; font-size: clamp(30px, 8vw, 54px); line-height: 1">The Dock Club</div>
 <div>DOCK SUPPER CLUB X THE CHEF AL EXPERIENCE</div>
 <div>OCT 29, THURSDAY · 5PM · BALTIMORE, MD</div>
@@ -65,7 +66,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <div id="env-name" style="font-size: clamp(15px, 4vw, 22px)"></div>
 </div>
 <div class="flap"></div>
-<button type="button" class="seal" id="open-env" aria-label="Open your invitation"><svg viewBox="0 0 64 36" style="width: 58%; height: auto" aria-hidden="true"><path d="M 4 30 C 16 30, 22 10, 34 10 C 44 10, 46 22, 38 22 C 46 27, 54 23, 60 27" fill="none" stroke="#FBF8F2" stroke-width="2.5" stroke-linecap="round"></path><circle cx="50" cy="8" r="3.2" fill="#E8642C"></circle></svg></button>
+<button type="button" class="seal" id="open-env" aria-label="Open your invitation"><svg viewBox="0 0 275 125" style="width: 70%; height: auto" aria-hidden="true"><g fill="none" stroke="#FBF8F2" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"><path d="M 15 105 C 30 114, 55 114, 75 98 C 100 78, 115 35, 150 20 C 170 12, 200 14, 222 38"></path><path d="M 196 42 C 176 50, 168 76, 184 94 C 198 108, 225 112, 250 110"></path></g><circle cx="254" cy="38" r="14" fill="#E8642C"></circle></svg></button>
 </div>
 <div id="env-hint" style="font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.2em">TAP THE SEAL TO OPEN</div>
 <a href="#invite" class="after flag" id="after" style="display: inline-block; padding: 15px 30px; background: #14253F; color: #FBF8F2; font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.2em; text-decoration: none">READ YOUR INVITATION</a>
@@ -123,7 +124,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <p style="margin: 0; max-width: 34em">People have always gone to the water to think, to celebrate, to grieve, to start over. It is the element tied to feeling and intuition. The part of us that knows before we can explain it.</p>
 <p style="margin: 0; max-width: 34em">The Dock Club is a social club built around that pull. Good food, good company, and the water close enough to hear.</p>
 <p style="margin: 0; max-width: 34em">Eastport. Galesville. Inner Harbor. On October 29 we tie up in Baltimore.</p>
-<svg viewBox="0 0 64 36" style="width: 96px; height: auto" aria-hidden="true"><path d="M 4 30 C 16 30, 22 10, 34 10 C 44 10, 46 22, 38 22 C 46 27, 54 23, 60 27" fill="none" stroke="#14253F" stroke-width="2.5" stroke-linecap="round"></path><circle cx="50" cy="8" r="3.2" fill="#E8642C"></circle></svg>
+<svg viewBox="0 0 275 125" style="width: 120px; height: auto" aria-hidden="true"><g fill="none" stroke="#14253F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 15 105 C 30 114, 55 114, 75 98 C 100 78, 115 35, 150 20 C 170 12, 200 14, 222 38"></path><path d="M 196 42 C 176 50, 168 76, 184 94 C 198 108, 225 112, 250 110"></path></g><circle cx="254" cy="38" r="12" fill="#E8642C"></circle></svg>
 <p style="margin: 0; font-size: 16px; font-weight: 500; letter-spacing: 0.3em">COME ABOARD. TASTE EVERYTHING. STAY A WHILE.</p>
 </section>
 <section id="rsvp" class="snap paper" style="background-color: #F1EBE0; padding: 88px 24px">
