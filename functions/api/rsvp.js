@@ -22,7 +22,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   const code = clean(data.code, 16).toLowerCase();
-  if (!/^[a-z0-9]{4,16}$/.test(code)) return json({ error: 'not found' }, 404);
+  if (!/^[a-z0-9]{8}$/.test(code)) return json({ error: 'not found' }, 404);
 
   const attending = data.attending === true;
   const email = clean(data.email, 200);
@@ -31,9 +31,10 @@ export async function onRequestPost({ request, env }) {
   const potluck = clean(data.potluck, 2000);
   if (!email && !phone) return json({ error: 'contact required' }, 400);
   if (attending && !allergies) return json({ error: 'allergies required' }, 400);
+  if (attending && data.release !== true) return json({ error: 'release required' }, 400);
 
   const auth = { authorization: `Bearer ${env.AIRTABLE_TOKEN}` };
-  const formula = encodeURIComponent(`LOWER({Guest code})='${code}'`);
+  const formula = encodeURIComponent(`LOWER(RIGHT(RECORD_ID(),8))='${code}'`);
   const found = await fetch(`${API}?maxRecords=1&filterByFormula=${formula}`, { headers: auth });
   if (!found.ok) return json({ error: 'lookup failed' }, 502);
   const record = (await found.json()).records[0];
@@ -45,6 +46,13 @@ export async function onRequestPost({ request, env }) {
     'Potluck answer': potluck,
     'Replied at': new Date().toISOString(),
   };
+  if (attending) fields['Photo release'] = true;
+  if (attending && record.fields['Plus one allowed'] === true) {
+    const bringing = data.plusOne === true;
+    fields['Bringing a plus one'] = bringing;
+    fields['Plus one name'] = bringing ? clean(data.plusName, 200) : '';
+    fields['Plus one allergies'] = bringing ? clean(data.plusAllergies, 2000) : '';
+  }
   if (email) fields.Email = email;
   if (phone) fields.Mobile = phone;
 

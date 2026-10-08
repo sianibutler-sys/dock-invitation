@@ -13,10 +13,10 @@ export async function onRequestGet({ request, env, waitUntil }) {
   if (!env.AIRTABLE_TOKEN) return json({ error: 'not configured' }, 503);
 
   const code = (new URL(request.url).searchParams.get('code') || '').toLowerCase();
-  if (!/^[a-z0-9]{4,16}$/.test(code)) return json({ error: 'not found' }, 404);
+  if (!/^[a-z0-9]{8}$/.test(code)) return json({ error: 'not found' }, 404);
 
   const auth = { authorization: `Bearer ${env.AIRTABLE_TOKEN}` };
-  const formula = encodeURIComponent(`LOWER({Guest code})='${code}'`);
+  const formula = encodeURIComponent(`LOWER(RIGHT(RECORD_ID(),8))='${code}'`);
   const res = await fetch(`${API}?maxRecords=1&filterByFormula=${formula}`, { headers: auth });
   if (!res.ok) return json({ error: 'lookup failed' }, 502);
 
@@ -37,6 +37,7 @@ export async function onRequestGet({ request, env, waitUntil }) {
   return json({
     firstName: f['First name'] || '',
     fullName: f['Full name'] || '',
+    plusOne: f['Plus one allowed'] === true,
     rsvp: f['RSVP'] === 'Yes' || f['RSVP'] === 'No' ? f['RSVP'] : '',
   });
 }
