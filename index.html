@@ -14,8 +14,10 @@
 <style>
 
 html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+@media (min-width:900px) and (min-height:640px){html{scroll-snap-type:y mandatory}}
+footer{scroll-snap-align:end}
 body{margin:0;background:#FBF8F2}
-.env{position:relative;width:min(560px,100%);aspect-ratio:3/2;margin-top:clamp(120px,30vw,210px);perspective:1100px;filter:drop-shadow(0 22px 30px rgba(20,37,63,.28))}
+.env{position:relative;width:min(560px,100%);aspect-ratio:3/2;margin-top:clamp(110px,26vw,190px);perspective:1100px;filter:drop-shadow(0 22px 30px rgba(20,37,63,.28))}
 .env .card{background-image:url(/assets/paper.png);background-blend-mode:multiply}
 .env .back,.env .pocket,.env .flap{background-image:url(/assets/linen.jpg);background-size:170px 170px;background-blend-mode:multiply}
 .env .back{position:absolute;inset:0;background-color:#C9BFAE}
@@ -58,11 +60,11 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </main>
 <div id="page">
 <div class="paper" style="background-color: #FBF8F2; color: #14253F; font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 18px; line-height: 1.6">
-<header style="max-width: 1120px; margin: 0 auto; padding: 32px 24px 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px">
+<section class="snap" style="padding: 32px 24px 64px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 30px; text-align: center">
+<header style="align-self: stretch; padding: 0 0 8px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px">
 <div style="font-family: 'Pinyon Script', cursive; font-size: 40px; line-height: 1">The Dock Club</div>
 <div style="font-size: 13px; font-weight: 500; letter-spacing: 0.3em">DOCK SUPPER CLUB X THE CHEF AL EXPERIENCE</div>
 </header>
-<section class="snap" style="padding: 32px 24px 64px; display: flex; flex-direction: column; align-items: center; gap: 30px; text-align: center">
 <div class="env" id="env">
 <div class="back"></div>
 <div class="card">
@@ -86,8 +88,8 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
 <div style="font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.22em; color: #14253F">A FIRST LOOK AT THE DOCK CLUB</div>
 <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 34px; line-height: 1" id="hero-name" hidden></div>
-<h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(48px, 7vw, 92px); line-height: 1.02"><span id="h1-first">An</span> evening on the water, <span>set for ten.</span></h1>
-<p style="margin: 0; font-size: 20px; max-width: 26em">Chef Al. A tasting served course by course aboard a private vessel, as evening comes down over the Inner Harbor. Ten places are set. One is yours.</p>
+<h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(48px, 7vw, 92px); line-height: 1.02"><span id="h1-first">An</span> evening on the water, <span>for ten guests.</span></h1>
+<p style="margin: 0; font-size: 20px; max-width: 26em">Chef Al. A tasting served course by course aboard a private vessel, as evening comes down over the Inner Harbor. Only ten guests will be aboard. We hope you are one of them.</p>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px">
 <a href="#rsvp" class="flag" style="display: inline-block; padding: 17px 34px; background: #14253F; color: #FBF8F2; font-weight: 600; font-size: 16px; letter-spacing: 0.14em; text-decoration: none">ACCEPT YOUR PLACE</a>
 <div style="font-size: 16px; letter-spacing: 0.06em">Thursday, October 29 · Baltimore</div>
@@ -95,7 +97,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </div>
 <img src="/assets/harbor-deck.webp" alt="The Baltimore skyline at dusk, seen across the water from the deck" style="flex: 1 1 360px; min-width: 0; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 30% 50%; display: block">
 </section>
-<section style="max-width: 900px; margin: 0 auto; padding: 56px 24px 24px">
+<section class="snap" style="max-width: 900px; margin: 0 auto; padding: 56px 24px">
 <div class="info">
 <details name="info" open>
 <summary><span class="lab">WHEN</span><span class="head">Thursday, October 29</span><span class="pm" aria-hidden="true"></span></summary>
@@ -115,7 +117,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </details>
 </div>
 </section>
-<section style="max-width: 1120px; margin: 0 auto; padding: 88px 24px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
+<section class="snap" style="max-width: 1120px; margin: 0 auto; padding: 56px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
 <img src="/assets/rooftop.webp" alt="The rooftop deck with a fire table and lanterns at sunset" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
 <img src="/assets/interior.jpg" alt="The living room looking out through glass doors to the harbor" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
 </section>
