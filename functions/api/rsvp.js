@@ -35,10 +35,10 @@ export async function onRequestPost({ request, env }) {
   if (attending && !allergies) return json({ error: 'allergies required' }, 400);
   if (attending && data.release !== true) return json({ error: 'release required' }, 400);
 
-  const auth = { authorization: `Bearer ${env.AIRTABLE_TOKEN}` };
+  const auth = { authorization: `Bearer ${env.AIRTABLE_TOKEN.trim()}` };
   const formula = encodeURIComponent(`LOWER(RIGHT(RECORD_ID(),8))='${code}'`);
   const found = await fetch(`${API}?maxRecords=1&filterByFormula=${formula}`, { headers: auth });
-  if (!found.ok) return json({ error: 'lookup failed' }, 502);
+  if (!found.ok) return json({ error: 'lookup failed', airtableStatus: found.status }, 502);
   const record = (await found.json()).records[0];
   if (!record) return json({ error: 'not found' }, 404);
 

@@ -15,10 +15,10 @@ export async function onRequestGet({ request, env, waitUntil }) {
   const code = (new URL(request.url).searchParams.get('code') || '').toLowerCase();
   if (!/^[a-z0-9]{8}$/.test(code)) return json({ error: 'not found' }, 404);
 
-  const auth = { authorization: `Bearer ${env.AIRTABLE_TOKEN}` };
+  const auth = { authorization: `Bearer ${env.AIRTABLE_TOKEN.trim()}` };
   const formula = encodeURIComponent(`LOWER(RIGHT(RECORD_ID(),8))='${code}'`);
   const res = await fetch(`${API}?maxRecords=1&filterByFormula=${formula}`, { headers: auth });
-  if (!res.ok) return json({ error: 'lookup failed' }, 502);
+  if (!res.ok) return json({ error: 'lookup failed', airtableStatus: res.status }, 502);
 
   const record = (await res.json()).records[0];
   if (!record) return json({ error: 'not found' }, 404);
