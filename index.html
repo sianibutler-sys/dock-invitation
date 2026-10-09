@@ -232,6 +232,19 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <input id="plus-last" type="text" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
 </div>
 </div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 16px">Optional: share your guest's email or mobile and we will send the arrival details to them directly too.</div>
+<div class="names two">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="plus-email" style="font-weight: 500">Your guest's email <span style="font-weight: 400">(optional)</span></label>
+<input id="plus-email" type="email" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="plus-phone" style="font-weight: 500">Your guest's mobile <span style="font-weight: 400">(optional)</span></label>
+<input id="plus-phone" type="tel" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+</div>
+</div>
+</div>
 <div style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid #E8642C">
 <label for="plus-kitchen" style="font-weight: 600; font-size: 20px"><span id="plus-kitchen-who">Your guest's</span> allergies and dietary restrictions <span style="font-weight: 400; font-size: 16px">(required)</span></label>
 <div style="font-size: 16px">The same goes for your guest. Chef Al plans around what you write here. If there is nothing, write "none."</div>
@@ -369,7 +382,9 @@ input::placeholder,textarea::placeholder{color:#5E6675}
       plusOne: plusAllowed && bringing,
       plusFirst: $('plus-first').value.trim(),
       plusLast: $('plus-last').value.trim(),
-      plusAllergies: $('plus-kitchen').value.trim()
+      plusAllergies: $('plus-kitchen').value.trim(),
+      plusEmail: $('plus-email').value.trim(),
+      plusPhone: $('plus-phone').value.trim()
     };
     if (mode !== 'guest') return fail('Replies open from your personal invitation link.');
     if ((data.attending || data.keep) && (!data.firstName || !data.lastName)) return fail('Please give your first and last name.');

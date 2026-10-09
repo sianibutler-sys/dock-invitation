@@ -57,6 +57,8 @@ export async function onRequestPost({ request, env }) {
     fields['Plus one first name'] = bringing ? clean(data.plusFirst, 100) : '';
     fields['Plus one last name'] = bringing ? clean(data.plusLast, 100) : '';
     fields['Plus one allergies'] = bringing ? clean(data.plusAllergies, 2000) : '';
+    fields['Plus one email'] = bringing ? clean(data.plusEmail, 200) : '';
+    fields['Plus one mobile'] = bringing ? clean(data.plusPhone, 40) : '';
   }
   const first = clean(data.firstName, 100);
   const last = clean(data.lastName, 100);
