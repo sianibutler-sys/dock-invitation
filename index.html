@@ -289,10 +289,11 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <div id="sent-no-note">Thank you for letting us know.</div>
 </div>
 </div>
+<p style="margin: 0; color: #4A5263">Questions before the evening? Write to <a href="mailto:siani@docksupperclub.com" style="color: #14253F; text-decoration: underline; text-underline-offset: 3px">siani@docksupperclub.com</a>.</p>
 </div>
 </section>
 <footer style="max-width: 1120px; margin: 0 auto; padding: 32px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 16px; color: #4A5263">
-<div>The Dock Club · docksupperclub.com</div>
+<div>The Dock Club · <a href="mailto:siani@docksupperclub.com" style="color: inherit; text-decoration: underline; text-underline-offset: 3px">siani@docksupperclub.com</a></div>
 <div>This invitation is personal. Please do not forward it.</div>
 </footer>
 </div>
@@ -397,7 +398,7 @@ input::placeholder,textarea::placeholder{color:#5E6675}
     btn.disabled = true;
     fetch('/api/rsvp', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })
       .then(function (r) { if (!r.ok) throw new Error(); if (data.keep) $('sent-no-note').textContent = 'Thank you for letting us know. We will be in touch about what comes next.'; showSent(choice); })
-      .catch(function () { btn.disabled = false; fail('Your reply did not go through. Please try again in a moment.'); });
+      .catch(function () { btn.disabled = false; fail('Your reply did not go through. Please try again in a moment, or write to siani@docksupperclub.com.'); });
   });
 
   fetch('/api/guest?code=' + encodeURIComponent(code))
