@@ -216,10 +216,10 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 </div>
 </div>
 <div id="plus-one" hidden style="display: flex; flex-direction: column; gap: 14px">
-<div style="font-weight: 500">You are welcome to bring one guest. Will you?</div>
+<div id="plus-q" style="font-weight: 500">You are welcome to bring one guest. Will you?</div>
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
 <button type="button" aria-pressed="true" data-plus="no" style="min-height: 54px; padding: 12px 24px; font: inherit; font-weight: 600; color: #14253F; background: transparent; border: 1px solid #14253F; cursor: pointer">Just me</button>
-<button type="button" aria-pressed="false" data-plus="yes" style="min-height: 54px; padding: 12px 24px; font: inherit; font-weight: 600; color: #14253F; background: transparent; border: 1px solid #14253F; cursor: pointer">I'm bringing a guest</button>
+<button type="button" aria-pressed="false" data-plus="yes" id="plus-yes" style="min-height: 54px; padding: 12px 24px; font: inherit; font-weight: 600; color: #14253F; background: transparent; border: 1px solid #14253F; cursor: pointer">I'm bringing a guest</button>
 </div>
 <div id="plus-fields" hidden style="display: flex; flex-direction: column; gap: 14px">
 <div class="names two">
@@ -232,14 +232,15 @@ input::placeholder,textarea::placeholder{color:#5E6675}
 <input id="plus-last" type="text" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
 </div>
 </div>
-<div style="display: flex; flex-direction: column; gap: 8px">
-<label for="plus-kitchen" style="font-weight: 500">Your guest's allergies and dietary restrictions</label>
-<input id="plus-kitchen" type="text" placeholder="If there is nothing, write none" style="box-sizing: border-box; width: 100%; min-height: 54px; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C">
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid #E8642C">
+<label for="plus-kitchen" style="font-weight: 600; font-size: 20px"><span id="plus-kitchen-who">Your guest's</span> allergies and dietary restrictions <span style="font-weight: 400; font-size: 16px">(required)</span></label>
+<div style="font-size: 16px">The same goes for your guest. Chef Al plans around what you write here. If there is nothing, write "none."</div>
+<textarea id="plus-kitchen" rows="3" placeholder="Shellfish allergy, no pork, vegetarian, gluten-free" style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
 </div>
 </div>
 </div>
 <div id="kitchen-block" style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid #E8642C">
-<label for="rsvp-kitchen" style="font-weight: 600; font-size: 20px">Allergies and dietary restrictions</label>
+<label for="rsvp-kitchen" style="font-weight: 600; font-size: 20px">Your allergies and dietary restrictions <span style="font-weight: 400; font-size: 16px">(required)</span></label>
 <div style="font-size: 16px">The menu is not shared in advance, so Chef Al plans around what you write here. Please be specific. If there is nothing, write "none."</div>
 <textarea id="rsvp-kitchen" rows="3" required placeholder="Shellfish allergy, no pork, vegetarian, gluten-free" style="box-sizing: border-box; width: 100%; padding: 12px 14px; font: inherit; color: #14253F; background: #FBF8F2; border: 1px solid #6F685C; resize: vertical"></textarea>
 </div>
@@ -401,14 +402,23 @@ input::placeholder,textarea::placeholder{color:#5E6675}
       plusAllowed = !!g.plusOne;
       $('plus-one').hidden = !plusAllowed;
       if (g.firstName) {
-        $('env-name').textContent = g.firstName;
-        $('hero-name').textContent = g.firstName + ',';
+        var both = g.plusFirst && plusAllowed;
+        $('env-name').textContent = both ? g.firstName + ' & ' + g.plusFirst : g.firstName;
+        $('hero-name').textContent = (both ? g.firstName + ' and ' + g.plusFirst : g.firstName) + ',';
         $('hero-name').hidden = false;
         $('h1-first').textContent = 'an';
       }
       if (g.firstName) $('rsvp-first').value = g.firstName;
       if (g.lastName) $('rsvp-last').value = g.lastName;
       if (g.suffix) $('rsvp-suffix').value = g.suffix;
+      if (plusAllowed && g.plusFirst) {
+        $('plus-first').value = g.plusFirst;
+        $('plus-last').value = g.plusLast || '';
+        $('plus-q').textContent = 'Your invitation includes ' + [g.plusFirst, g.plusLast].filter(Boolean).join(' ') + '. Will they be joining you?';
+        $('plus-yes').textContent = 'Yes, ' + g.plusFirst + ' is coming';
+        $('plus-kitchen-who').textContent = g.plusFirst + "'s";
+        $('plus-yes').click();
+      }
       if (g.rsvp === 'Yes') showSent('yes');
       if (g.rsvp === 'No') showSent('no');
     })

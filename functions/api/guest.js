@@ -39,6 +39,8 @@ export async function onRequestGet({ request, env, waitUntil }) {
     lastName: f['Last name'] || '',
     suffix: f['Suffix'] || '',
     plusOne: f['Plus one allowed'] === true,
+    plusFirst: f['Plus one allowed'] === true ? f['Plus one first name'] || '' : '',
+    plusLast: f['Plus one allowed'] === true ? f['Plus one last name'] || '' : '',
     rsvp: f['RSVP'] === 'Yes' || f['RSVP'] === 'No' ? f['RSVP'] : '',
   });
 }
